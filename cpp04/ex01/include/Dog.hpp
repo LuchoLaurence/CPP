@@ -15,6 +15,7 @@
 
 // Includes
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 // classes
 

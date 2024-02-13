@@ -10,3 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#// Header-protection
+#pragma once
+
+// Includes
+#include "Animal.hpp"
+
+// classes
+
+class Cat : public Animal {
+	
+	public:
+	Cat();
+	~Cat();
+	Cat(Cat const &cpy);
+	Cat &operator=(Cat const &cpy);
+
+	void makeSound(void) const;
+};

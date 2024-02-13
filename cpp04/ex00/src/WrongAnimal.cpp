@@ -10,36 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal() : _type("null") {
-	std::cout << "Animal Constructor called" << std::endl;
+WrongAnimal::WrongAnimal() : _type("null") {
+	std::cout << "WrongAnimal Constructor called" << std::endl;
 	return;
 }
 
-Animal::~Animal() {
-	std::cout << "Animal Destructor called" << std::endl;
+WrongAnimal::~WrongAnimal() {
+	std::cout << "WrongAnimal Destructor called" << std::endl;
 	return;
 }
 
-Animal::Animal(Animal const & cpy) {
-	std::cout << "Animal Copy Constructor called" << std::endl;
+WrongAnimal::WrongAnimal(WrongAnimal const & cpy) {
+	std::cout << "WrongAnimal Copy Constructor called" << std::endl;
 	*this = cpy;
 	return;
 }
 
-Animal & Animal::operator=(Animal const & other) {
+WrongAnimal & WrongAnimal::operator=(WrongAnimal const & other) {
 	if (this == &other)
         return (*this);
 	this->_type = other._type;
 	return (*this);
 }
 
-void Animal::makeSound() const {
-	std::cout << "Blop blop blop" << std::endl;
+void WrongAnimal::makeSound() const {
+	std::cout << "Bzz Bzz" << std::endl;
 	return;
 }
 
-std::string Animal::getType() const {
+std::string WrongAnimal::getType() const {
 	return (this->_type);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llaurenc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 16:39:29 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/02/12 16:39:30 by llaurenc         ###   ########.fr       */
+/*   Created: 2024/02/13 12:11:46 by llaurenc          #+#    #+#             */
+/*   Updated: 2024/02/13 12:11:46 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #pragma once
 
 // Includes
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 // classes
 
-class Dog : public Animal {
+class WrongCat : public WrongAnimal {
 	
 	public:
-	Dog();
-	~Dog();
-	Dog(Dog const &cpy);
-	Dog &operator=(Dog const &cpy);
+	WrongCat();
+	~WrongCat();
+	WrongCat(WrongCat const & cpy);
+	WrongCat &operator=(WrongCat const & cpy);
 
 	void makeSound(void) const;
 };

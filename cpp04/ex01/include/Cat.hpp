@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 16:39:29 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/02/12 16:39:30 by llaurenc         ###   ########.fr       */
+/*   Created: 2024/02/12 16:39:26 by llaurenc          #+#    #+#             */
+/*   Updated: 2024/02/12 16:39:27 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 // Includes
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 // classes
 
-class Dog : public Animal {
+class Cat : public Animal {
 	
 	public:
-	Dog();
-	~Dog();
-	Dog(Dog const &cpy);
-	Dog &operator=(Dog const &cpy);
+	Cat();
+	~Cat();
+	Cat(Cat const &cpy);
+	Cat &operator=(Cat const &cpy);
 
 	void makeSound(void) const;
 };
