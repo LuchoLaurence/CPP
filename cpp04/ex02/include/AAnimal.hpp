@@ -20,17 +20,17 @@
 
 // classes
 
-class Animal {
+class AAnimal {
 
 	protected:
 	std::string _type;
 	public:
-	Animal();
-	Animal(std::string type);
-	virtual ~Animal();
-	Animal(Animal const & cpy);
+	AAnimal();
+	AAnimal(std::string type);
+	virtual ~AAnimal();
+	AAnimal(AAnimal const & cpy);
 	
-	Animal & operator=(Animal const & other);
+	AAnimal & operator=(AAnimal const & other);
 	
 	virtual void makeSound() const;
 	std::string getType() const;

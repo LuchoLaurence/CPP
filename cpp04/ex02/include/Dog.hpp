@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAnimal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 16:39:24 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/02/12 16:39:25 by llaurenc         ###   ########.fr       */
+/*   Created: 2024/02/12 16:39:29 by llaurenc          #+#    #+#             */
+/*   Updated: 2024/02/12 16:39:30 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 #pragma once
 
 // Includes
-#include <string>
-#include <iostream>
-
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
 // classes
 
-class Animal {
+class Dog : public AAnimal {
+	private:
 
-	protected:
-	std::string _type;
+	Brain* _brain;
+	
 	public:
-	Animal();
-	Animal(std::string type);
-	virtual ~Animal();
-	Animal(Animal const & cpy);
-	
-	Animal & operator=(Animal const & other);
-	
-	virtual void makeSound() const;
-	std::string getType() const;
-};
+	Dog();
+	~Dog();
+	Dog(Dog const &cpy);
+	Dog &operator=(Dog const &cpy);
 
+	void makeSound(void) const;
+};

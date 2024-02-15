@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,36 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongAnimal.hpp"
+#include "AAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("null") {
-	std::cout << "WrongAnimal Constructor called" << std::endl;
+AAnimal::AAnimal() : _type("null") {
+	std::cout << "AAnimal Constructor called" << std::endl;
 	return;
 }
 
-WrongAnimal::~WrongAnimal() {
-	std::cout << "WrongAnimal Destructor called" << std::endl;
+AAnimal::AAnimal(std::string type) : _type(type) {
+	std::cout << "AAnimal Constructor with parameter called" << std::endl;
 	return;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal const & cpy) {
-	std::cout << "WrongAnimal Copy Constructor called" << std::endl;
-	*this = cpy;
+AAnimal::~AAnimal() {
+	std::cout << "AAnimal Destructor called" << std::endl;
 	return;
 }
 
-WrongAnimal & WrongAnimal::operator=(WrongAnimal const & other) {
+AAnimal::AAnimal(AAnimal const & cpy) {
+	std::cout << "AAnimal Copy Constructor called" << std::endl;
+	this->_type= cpy._type;
+	return;
+}
+
+AAnimal & AAnimal::operator=(AAnimal const & other) {
 	if (this == &other)
         return (*this);
 	this->_type = other._type;
 	return (*this);
 }
 
-void WrongAnimal::makeSound() const {
-	std::cout << "Bzz Bzz" << std::endl;
+void AAnimal::makeSound() const {
+	std::cout << "Blop blop blop" << std::endl;
 	return;
 }
 
-std::string WrongAnimal::getType() const {
+std::string AAnimal::getType() const {
 	return (this->_type);
 }

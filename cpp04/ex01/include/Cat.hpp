@@ -22,7 +22,7 @@
 class Cat : public Animal {
 	private:
 
-	brain*	_brain;
+	Brain*	_brain;
 
 	public:
 
@@ -32,5 +32,4 @@ class Cat : public Animal {
 	Cat &operator=(Cat const &cpy);
 
 	void makeSound(void) const;
-	void newBrain();
 };

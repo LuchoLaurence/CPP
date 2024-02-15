@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.hpp"
+#include <cstdlib>
 
 int main( void )
 {
@@ -22,8 +23,8 @@ int main( void )
 	<< std::endl;
 
 	std::cout  << "----- Construct----- " << std::endl;
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 
 	std::cout << "----- Destruct----- " << std::endl;
 	delete j;
@@ -36,7 +37,7 @@ int main( void )
 	std::endl;
 
 	std::cout << "----- Construct----- " << std::endl;
-	const Animal* animals[6] =
+	const AAnimal* animals[6] =
 	{
 		new Dog(), new Dog(), new Dog(),
 		new Cat(), new Cat(), new Cat(),
@@ -68,4 +69,7 @@ int main( void )
 	std::cout << "----- Destruct----- " << std::endl;
 	return	0;
 }
-
+__attribute((destructor))
+static void destructor() {
+system("leaks -q main");
+}

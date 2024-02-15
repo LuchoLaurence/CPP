@@ -10,7 +10,7 @@ OBJ_DIR		=	obj/
 INC_DIR		=	include/
 
 #source files
-SRC_FILES	=	main.cpp Brain.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp
+SRC_FILES	=	main.cpp Brain.cpp Dog.cpp Cat.cpp AAnimal.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 

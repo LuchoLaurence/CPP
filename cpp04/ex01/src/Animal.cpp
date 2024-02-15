@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,6 +17,11 @@ Animal::Animal() : _type("null") {
 	return;
 }
 
+Animal::Animal(std::string type) : _type(type) {
+	std::cout << "Animal Constructor with parameter called" << std::endl;
+	return;
+}
+
 Animal::~Animal() {
 	std::cout << "Animal Destructor called" << std::endl;
 	return;
@@ -24,7 +29,7 @@ Animal::~Animal() {
 
 Animal::Animal(Animal const & cpy) {
 	std::cout << "Animal Copy Constructor called" << std::endl;
-	*this = cpy;
+	this->_type= cpy._type;
 	return;
 }
 
