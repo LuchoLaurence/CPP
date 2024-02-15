@@ -15,11 +15,13 @@
 Cat::Cat() : Animal() {
 	std::cout << "Cat constructor called" << std::endl;
 	this->_type = "Cat";
+	newBrain();
 	return;
 }
 
 Cat::~Cat() {
 	std::cout << "Cat Destructor called" << std::endl;
+	delete this->cerveau;
 	return;
 }
 
@@ -35,5 +37,10 @@ Cat & Cat::operator=(Cat const & other) {
 
 void Cat::makeSound(void) const {
 	std::cout << "Miaou Miaou" << std::endl;
+	return;
+}
+
+void Cat::newBrain( void ) {
+	this->_brain = new Brain();
 	return;
 }

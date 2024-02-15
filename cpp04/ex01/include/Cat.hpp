@@ -20,12 +20,17 @@
 // classes
 
 class Cat : public Animal {
-	
+	private:
+
+	brain*	_brain;
+
 	public:
+
 	Cat();
 	~Cat();
 	Cat(Cat const &cpy);
 	Cat &operator=(Cat const &cpy);
 
 	void makeSound(void) const;
+	void newBrain();
 };
