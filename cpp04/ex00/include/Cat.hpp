@@ -22,9 +22,9 @@ class Cat : public Animal {
 	
 	public:
 	Cat();
-	~Cat();
 	Cat(Cat const &cpy);
 	Cat &operator=(Cat const &cpy);
+	~Cat();
 
 	void makeSound(void) const;
 };

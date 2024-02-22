@@ -34,3 +34,4 @@ class WrongAnimal {
 	std::string getType() const;
 };
 
+

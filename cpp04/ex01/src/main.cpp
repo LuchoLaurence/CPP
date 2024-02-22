@@ -61,7 +61,8 @@ int main( void )
 
 	std::cout << "----- Construct----- " << std::endl;
 	Dog dog;
-	Dog copyDog = dog;
+	Dog copyDog;
+	copyDog = dog;
 	Cat cat;
 	Cat copyCat = cat;
 

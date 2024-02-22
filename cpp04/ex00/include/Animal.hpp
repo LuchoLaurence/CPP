@@ -33,4 +33,3 @@ class Animal {
 	virtual void makeSound() const;
 	std::string getType() const;
 };
-
