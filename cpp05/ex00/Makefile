@@ -1,4 +1,4 @@
-NAME		=	bureaucrat
+NAME		=	Bureaucrat
 
 CC			=	c++
 
@@ -10,7 +10,7 @@ OBJ_DIR		=	obj/
 INC_DIR		=	include/
 
 #source files
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp Bureaucrat.cpp
 
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
