@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:11:35 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/23 14:44:18 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:56:05 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool ScalarConverter::checkDecimal(const std::string &str, int end)
 
 Strtype ScalarConverter::CheckType(const std::string &str)
 {
-	if (str.empty());
+	if (str.empty())
 		return NO_TYPE;
 	if (str.length() == 1 && std::isalpha(str[0]))
 		return CHAR_TYPE;
@@ -86,10 +86,117 @@ Strtype ScalarConverter::CheckType(const std::string &str)
 	return NO_TYPE;
 }
 
+void	ScalarConverter::printChar(char c){
+	if (std::isprint(c))
+		std::cout << "char: " << "'" << c << "'" << std::endl;
+	else if (c > 127 || c < 0)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+}
+
+void	ScalarConverter::printInt(int i){
+	std::cout << "int: " << i << std::endl;
+}
+
+void ScalarConverter::printFloat(float f){
+	if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max() )
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << std::fixed << std::setprecision(1) <<f << "f" << std::endl;
+}
+
+void ScalarConverter::printDouble(double d){
+	if (d < std::numeric_limits<double>::min() || d > std::numeric_limits<double>::max())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+void ScalarConverter::strToChar(const std::string &str)
+{
+	printChar(str[0]);
+	printInt(static_cast<int>(str[0]));
+	printFloat(static_cast<float>(str[0]));
+	printDouble(static_cast<double>(str[0]));
+}
+
+void ScalarConverter::strToInt(const std::string &str)
+{
+	char *endptr;
+	long int lon = std::strtol(str.c_str(), &endptr, 10);
+	int	a = static_cast<int>(lon);
+
+	if (lon < 0 || lon > 127)
+		std::cout << "char: impossible" << std::endl;
+	else 
+		printChar(static_cast<char>(a));
+	if (lon < std::numeric_limits<int>::min() || lon > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		printInt(a);
+	printFloat(static_cast<float>(a));
+	printDouble(static_cast<double>(a));
+}
+void ScalarConverter::strToFloat(const std::string &str)
+{
+	double test = std::atof(str.c_str());
+	printf("test : %f\n", test);
+	float f = static_cast<float>(test);
+	printf("f : %f\n", f);
+	if (f < 0 || f > 127) {
+		std::cout << "char: impossible" << std::endl;
+	}
+	else
+		printChar(static_cast<char>(f));
+	if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		printInt(static_cast<int>(f));
+	if (test < std::numeric_limits<float>::min() || test > std::numeric_limits<float>::max() )
+		std::cout << "float: impossible" << std::endl;
+	else
+		printFloat(f);
+	printDouble(static_cast<double>(f));
+}
+void ScalarConverter::strToDouble(const std::string &str){
+	char *endptr;
+	double d = std::strtod(str.c_str(), &endptr);
+	if (d < 0 || d > 127) {
+		std::cout << "char: impossible" << std::endl;
+	}
+	else
+		printChar(static_cast<char>(d));
+	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		printInt(static_cast<int>(d));
+	if (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max() )
+		std::cout << "float: impossible" << std::endl;
+	else
+		printFloat(static_cast<float>(d));
+	printDouble(d);
+	
+}
+
+void ScalarConverter::ft_nan(const std::string &str){
+	std::cout << "char: impossible" << std:: endl
+		<< "int: impossible" << std::endl;
+	if (str == "nan" || str == "nanf")
+		std::cout << "float: nanf" << std::endl
+		<< "double: nan" << std::endl;
+	else if (str == "+inf" || str == "+inff")
+		std::cout << "float: inff" << std::endl
+		<< "double: inf" << std::endl;
+	else if (str == "-inf" || str == "-inff")
+        std::cout << "float: -inff" << std::endl
+		<< "double: -inf" << std::endl;
+}
+
 void ScalarConverter::convert(const std::string &str)
 {
 	Strtype type = CheckType(str);
-	
+	std::cout << "type = " << type << std::endl;
 	switch (type)
 	{
 	case NO_TYPE:
@@ -97,18 +204,19 @@ void ScalarConverter::convert(const std::string &str)
 			<< std::endl << "float: impossible" << std::endl << "double: impossible" << std::endl;
 		break;
 	case NAN_TYPE:
-		
+		ft_nan(str);
 		break;
 	case CHAR_TYPE:
-
+		strToChar(str);
 		break;
 	case INT_TYPE:
-
+		strToInt(str);
 		break;
 	case FLOAT_TYPE:
-
+		strToFloat(str);
 		break;
 	case DOUBLE_TYPE:
+		strToDouble(str);
 		break;
 		
 	default:
@@ -116,5 +224,3 @@ void ScalarConverter::convert(const std::string &str)
 	}
 	return ;
 }
-
-void Scalar

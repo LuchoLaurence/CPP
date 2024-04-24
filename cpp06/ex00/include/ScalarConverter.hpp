@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:11:37 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/23 14:10:26 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:11:41 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 #pragma once
 
 // includes
-#include <string>
 #include <iostream>
-
+#include <sstream>
+#include <iomanip>
+#include <cmath>
+#include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <limits>
 //classes
 
 enum Strtype
@@ -40,9 +45,17 @@ class ScalarConverter {
 		static bool checkDecimal(const std::string &str, int end);
 		static Strtype CheckType(const std::string &str);
 				
-		static int StrToInt(const std::string &str);
-		static float StrToFloat(const std::string &str);
-		static double StrToDouble(const std::string &str);
+		static void strToInt(const std::string &str);
+		static void strToFloat(const std::string &str);
+		static void strToDouble(const std::string &str);
+		static void strToChar(const std::string &str);
+
+		static void printChar(char c);
+		static void printInt(int i);
+		static void printFloat(float f);
+		static void printDouble(double d);
+
+		static void	ft_nan(const std::string &str);
 		
 	public :
 		static void convert(const std::string &str);

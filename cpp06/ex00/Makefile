@@ -1,4 +1,4 @@
-NAME		=	Bureaucrat
+NAME		=	convert
 
 CC			=	c++
 
@@ -10,7 +10,7 @@ OBJ_DIR		=	obj/
 INC_DIR		=	include/
 
 #source files
-SRC_FILES	=	main.cpp Intern.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+SRC_FILES	=	main.cpp ScalarConverter.cpp
 
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
