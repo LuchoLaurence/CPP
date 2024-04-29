@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:11:35 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/29 10:12:49 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:57:43 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ Strtype ScalarConverter::CheckType(const std::string &str)
 {
 	if (str.empty())
 		return NO_TYPE;
-	if (str.length() == 1 && std::isalpha(str[0]))
+	if (str.length() == 1 && std::isprint(str[0]))
 		return CHAR_TYPE;
 	if (str == "-inff" || str == "+inff" || str == "nanf"
 	|| str == "-inf" || str == "+inf" || str == "nan")
