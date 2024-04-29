@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:11:35 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/24 15:56:05 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:12:49 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,7 @@ void ScalarConverter::strToInt(const std::string &str)
 void ScalarConverter::strToFloat(const std::string &str)
 {
 	double test = std::atof(str.c_str());
-	printf("test : %f\n", test);
 	float f = static_cast<float>(test);
-	printf("f : %f\n", f);
 	if (f < 0 || f > 127) {
 		std::cout << "char: impossible" << std::endl;
 	}
@@ -196,7 +194,6 @@ void ScalarConverter::ft_nan(const std::string &str){
 void ScalarConverter::convert(const std::string &str)
 {
 	Strtype type = CheckType(str);
-	std::cout << "type = " << type << std::endl;
 	switch (type)
 	{
 	case NO_TYPE:
