@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:47:09 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/17 16:37:01 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:52:58 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ class AForm;
 
 class Intern
 {
+	public :
 		Intern();
 		~Intern();
 		Intern(Intern const & cpy);
 		Intern & operator=(Intern const & other);
 
-		AForm *makeform(std::string form, std::string target);
+		AForm *makeForm(std::string form, std::string target);
 
 		class NotGoodName : public std::exception
 		{

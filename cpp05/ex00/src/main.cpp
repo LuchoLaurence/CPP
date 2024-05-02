@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 11:29:28 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/15 14:07:41 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:39:51 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main( void )
 			continue;
 		}
 	}
-	for (int i = 2; i > -2; i--)
+	for (int i = 2; i > -1; i--)
 	{
 		try
 		{

@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:48:58 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/29 16:31:25 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:42:44 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,25 @@ void  identify(Base& p)
 {
 	try 
 	{
-		if(dynamic_cast<A *>(&p))
+		A & a = dynamic_cast<A &>(p);
 		std::cout << "The actual type of the object  to by p is A" << std::endl;
+		static_cast<void>(a);
 	}
 	catch (std::exception &bc)
 	{
 		try 
 		{
-		if(dynamic_cast<B *>(&p))
+		B & b = dynamic_cast<B &>(p);
 		std::cout << "The actual type of the object to by p is B" << std::endl;	
+		static_cast<void>(b);
 		}
 		catch (std::exception &bc)
 		{
 			try
 			{
-				if(dynamic_cast<C *>(&p))
+				C & c = dynamic_cast<C &>(p);
 				std::cout << "The actual type of the object to by p is C" << std::endl;
+				static_cast<void>(c);
 			}
 			catch(std::exception &bc)
 			{
@@ -73,10 +76,11 @@ void  identify(Base& p)
 int main()
 {
 	Base *test = NULL;
-	Base& ref = *test;
 	test = generate();
+	Base& ref = *test;
 	identify(test);
 	identify(ref);
+	delete test;
 
 	return 0;
 }

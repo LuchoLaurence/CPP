@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrate.cpp                                    :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 14:43:28 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/08 14:45:37 by llaurenc         ###   ########.fr       */
+/*   Created: 2024/05/02 11:52:48 by llaurenc          #+#    #+#             */
+/*   Updated: 2024/05/02 14:21:13 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <bureaucrate.hpp>
+#pragma once
 
-Bureaucrate::Bureaucrate() :
-{
-	
+#include <iostream>
+
+template< typename T, typename F>
+void iter(T* array, size_t length, F fonc){
+	for (size_t i = 0; i < length; ++i)
+	{
+		std::cout << "i = " << i << std::endl;
+		fonc(array[i]);
+	}
+}
+
+template<typename T>
+void print(T & value) {
+    std::cout << value << " ";
 }

@@ -6,11 +6,16 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:46:55 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/17 16:38:26 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:52:22 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+#include <iostream>
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 Intern::Intern()
 {
@@ -34,7 +39,7 @@ Intern & Intern::operator=(Intern const & other)
 	return (*this);
 }
 
-AForm *Intern::makeform(std::string form, std::string target)
+AForm *Intern::makeForm(std::string form, std::string target)
 {
 	size_t i;
 	std::string	forms[3] = {"Shrubbery" , "Presidential", "Robotomy"};
