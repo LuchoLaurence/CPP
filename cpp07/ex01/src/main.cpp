@@ -17,7 +17,6 @@ int main() {
     // Exemple d'utilisation de la fonction iter avec un tableau d'entiers
     int intArray[] = {1, 2, 3, 4, 5};
     iter(intArray, 5, print<int>);
-    std::cout << std::endl;
 
     // Exemple d'utilisation de la fonction iter avec un tableau de caractères
     char charArray[] = {'a', 'b', 'c', 'd', 'e'};

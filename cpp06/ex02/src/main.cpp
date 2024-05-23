@@ -6,7 +6,7 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:48:58 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/04/30 13:42:44 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:58:53 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ Base * generate()
 
 void identify(Base* p)
 {
-	if (A * a = dynamic_cast<A *>(p))
+	if (dynamic_cast<A *>(p))
 		std::cout << "The actual type of the object pointed to by p is A" << std::endl;
-	else if (B * b = dynamic_cast<B *>(p))
+	else if (dynamic_cast<B *>(p))
 		std::cout << "The actual type of the object pointed to by p is B" << std::endl;
-	else if (C * c = dynamic_cast<C *>(p))
+	else if (dynamic_cast<C *>(p))
 		std::cout << "The actual type of the object pointed to by p is C" << std::endl;
 	else
 		std::cout << "error" << std::endl;
@@ -46,7 +46,7 @@ void  identify(Base& p)
 	try 
 	{
 		A & a = dynamic_cast<A &>(p);
-		std::cout << "The actual type of the object  to by p is A" << std::endl;
+		std::cout << "The actual type of the object Pointed to by p is A" << std::endl;
 		static_cast<void>(a);
 	}
 	catch (std::exception &bc)
@@ -54,7 +54,7 @@ void  identify(Base& p)
 		try 
 		{
 		B & b = dynamic_cast<B &>(p);
-		std::cout << "The actual type of the object to by p is B" << std::endl;	
+		std::cout << "The actual type of the object Pointed to by p is B" << std::endl;	
 		static_cast<void>(b);
 		}
 		catch (std::exception &bc)
@@ -62,7 +62,7 @@ void  identify(Base& p)
 			try
 			{
 				C & c = dynamic_cast<C &>(p);
-				std::cout << "The actual type of the object to by p is C" << std::endl;
+				std::cout << "The actual type of the object Pointed to by p is C" << std::endl;
 				static_cast<void>(c);
 			}
 			catch(std::exception &bc)

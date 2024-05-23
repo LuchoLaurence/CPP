@@ -18,12 +18,13 @@ template< typename T, typename F>
 void iter(T* array, size_t length, F fonc){
 	for (size_t i = 0; i < length; ++i)
 	{
-		std::cout << "i = " << i << std::endl;
+		//std::cout << "i = ";
 		fonc(array[i]);
 	}
 }
 
 template<typename T>
 void print(T & value) {
-    std::cout << value << " ";
+    std::cout << value << " " << std::endl;
+	return ;
 }
