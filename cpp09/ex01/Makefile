@@ -1,4 +1,4 @@
-NAME = Span
+NAME = RPN
 
 CC = c++
 
@@ -12,7 +12,7 @@ INC_DIR = include/
 
 #sources files
 
-SRC_FILES = main.cpp Span.cpp
+SRC_FILES = main.cpp RPN.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
