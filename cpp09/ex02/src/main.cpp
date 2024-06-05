@@ -3,65 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llaurenc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 08:26:42 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/05/22 08:26:42 by llaurenc         ###   ########.fr       */
+/*   Created: 2024/06/03 14:25:39 by llaurenc          #+#    #+#             */
+/*   Updated: 2024/06/03 14:25:39 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.hpp"
+#include "PmergeMe.hpp"
 
-int main()
+bool	isCorrect(char * str)
 {
+	int i = 0;
+	char* endptr;
 
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite)
+	std::string stri(str);
+	long number = std::strtol(stri.c_str(), &endptr, 10);
+	if (number > INT_MAX || number < INT_MIN)
+		throw std::runtime_error("An arg exceeds the limits of INT");
+	while(str[i])
 	{
-		std::cout << *it << std::endl;
-		++it;
+		if (!std::isdigit(str[i]))
+			return false;
+		i++;
 	}
-	std::stack<int> s(mstack);
-	return 0;
+	return true;
 }
 
-// int main()
-// {
+int main(int argc, char *argv[])
+{
+	if (argc == 0)
+		return 0;
+	try {
+		int i = 1;
+		std::list<int> list;
+		while (argv[i])
+		{
+			if (!isCorrect(argv[i])) throw std::runtime_error("Bad args! Positive integers only!");
+			else 
+				list.push_back(std::atoi(argv[i]));
+			i++;
+		}
+		std::list<int>::iterator it = list.begin();
 
-// 	std::list<int> mstack;
-// 	mstack.push_back(5);
-// 	mstack.push_back(17);
-// 	std::cout << mstack.back() << std::endl;
-// 	mstack.pop_back();
-// 	std::cout << mstack.size() << std::endl;
-// 	mstack.push_back(3);
-// 	mstack.push_back(5);
-// 	mstack.push_back(737);
-// 	//[...]
-// 	mstack.push_back(0);
-// 	std::list<int>::iterator it = mstack.begin();
-// 	std::list<int>::iterator ite = mstack.end();
-// 	++it;
-// 	--it;
-// 	while (it != ite)
-// 	{
-// 		std::cout << *it << std::endl;
-// 		++it;
-// 	}
-// 	std::list<int> s(mstack);
-// 	return 0;
-// }
+		while (it != list.end())
+		{
+			std::cout << *it << " ";
+			it++;
+		}
+		std::pair
+		std::cout << "a/b = " << a/b << std::endl;
+	}
+	catch (const std::exception & bc)
+	{
+		std::cerr << "Error: " << bc.what() << std::endl;
+		return 1;
+	}
+	return 0;
+}

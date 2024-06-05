@@ -1,4 +1,4 @@
-NAME = MutantStack
+NAME = PmergeMe
 
 CC = c++
 
@@ -12,7 +12,7 @@ INC_DIR = include/
 
 #sources files
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp PmergeMe.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
