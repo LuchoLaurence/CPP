@@ -18,4 +18,21 @@
 #include <list>
 #include <cstdlib>
 #include <climits>
+#include <vector>
 
+template<typename Container>
+class PmergeMe
+{
+private:
+	Container array;
+public:
+	PmergeMe();
+	~PmergeMe();
+	PmergeMe(PmergeMe const & cpy);
+	PmergeMe &operator=(PmergeMe const & other);
+
+	void Init(char *argv[]);
+	bool isCorrect(char *str);
+	void fordJohnsonSort(Container & array);
+	void merge(Container & left, Container & right, Container & res);
+};
