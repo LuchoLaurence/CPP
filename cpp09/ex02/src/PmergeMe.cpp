@@ -6,113 +6,253 @@
 /*   By: llaurenc <llaurenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 09:26:41 by llaurenc          #+#    #+#             */
-/*   Updated: 2024/06/05 09:26:59 by llaurenc         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:55:47 by llaurenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-template<typename Container>
-PmergeMe<Container>::PmergeMe()
+
+PmergeMe::PmergeMe(void) : _size(0), _sorted(false)
 {
-}
-
-template<typename Container>
-PmergeMe<Container>::~PmergeMe()
-{
-}
-
-template<typename Container>
-PmergeMe<Container>::PmergeMe(PmergeMe const & cpy)
-{
-	this->list = cpy.list;
-}
-
-template<typename Container>
-PmergeMe<Container> & PmergeMe<Container>::operator=(PmergeMe const & other)
-{
-	if (this == &other)
-		return (*this);
-	this->list = other.list;
-	return (*this);
-}
-
-template<typename Container>
-bool	PmergeMe<Container>::isCorrect(char * str)
-{
-	int i = 0;
-	char* endptr;
-
-	std::string stri(str);
-	long number = std::strtol(stri.c_str(), &endptr, 10);
-	if (number > INT_MAX || number < INT_MIN)
-		throw std::runtime_error("An arg exceeds the limits of INT");
-	while(str[i])
-	{
-		if (!std::isdigit(str[i]))
-			return false;
-		i++;
-	}
-	return true;
-}
-
-template<typename Container>
-void PmergeMe<Container>::Init(char *argv[])
-{
-	int i = 1;
-		while (argv[i])
-		{
-			if (!isCorrect(argv[i])) throw std::runtime_error("Bad args! Positive integers only!");
-			else 
-				this->array.push_back(std::atoi(argv[i]));
-			i++;
-		}
-		typename Container::iterator it = this->array.begin();
-
-		while (it != this->array.end())
-		{
-			std::cout << *it << " ";
-			it++;
-		}
-}
-
-template<typename Container>
-void PmergeMe<Container>::fordJohnsonSort(Container & array)
-{
-	if (array.size() <= 1)
-		return array;
-
-	//regrouper les paires et déterminer le max a droite et le min a gauche
-	Container left, right;
-	for (int i = 0; i + 1 < array.size(); i + 2)
-	{
-		if (array[i] < array[i + 1])
-		{
-			left.push_back(array[i]);
-			right.push_back(array[i + 1]);
-		}
-		else {
-			left.push_back(array[i + 1]);
-			right.push_back(array[i]);
-		}
-		if (array.size() % 2 == 1)
-			left.push_back(array[array.size() - 1]);
-	}
-
-	//Tri récursif
-	fordJohnsonSort(right);
-
-
-	//Fusion des deux Container
-	Container merged_Container;
-	merge(left, right, merged_Container);
-
-	array = merged_Container;
 	return ;
 }
 
-template <typename Container>
-void	PmergeMe<Container>::merge(Container & left, COntainer & right, Container & res)
+PmergeMe::PmergeMe(int argc, char **argv) : _size(argc - 1), _sorted(false)
 {
-	
+	_vector = _parseArgsVector(argc,argv);
+	_verifyDuplicates();
+	_deque = _parseArgsDeque(argc,argv);
+
+	_printBeforeAfter();
+
+	double tBegin = _getTime();
+	_mergeInsertSort(_vector);
+	_deltaTimeVector = _deltaTime(tBegin);
+
+	tBegin = _getTime();
+	_mergeInsertSort(_deque);
+	_deltaTimeDeque = _deltaTime(tBegin);
+
+	_sorted = true;
+	_printBeforeAfter();
+
+	_printTime("vector");
+	_printTime("deque");
+	return ;
+}
+
+PmergeMe::PmergeMe(const PmergeMe& obj)
+{
+	*this = obj;
+	return ;
+}
+
+PmergeMe::~PmergeMe(void)
+{
+	return ;
+}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
+{
+	if (this != &obj)
+	{
+		this->_size = obj._size;
+		this->_sorted = obj._sorted;
+		this->_vector = obj._vector;
+		this->_deque = obj._deque;
+		this->_deltaTimeVector = obj._deltaTimeVector;
+		this->_deltaTimeDeque = obj._deltaTimeDeque;
+	}
+	return (*this);
+}
+
+// std::ostream&	operator<<(std::ostream& o, const PmergeMe& i)
+// {
+// 	o << "Vector delta time: " << i.getVectorDeltaTime() << std::endl << "Deque delta time: " << i.getDequeDeltaTime();
+// 	return o;
+// }
+
+/*
+** Getters
+*/
+
+double	PmergeMe::getVectorDeltaTime(void) const
+{
+	return (this->_deltaTimeVector);
+}
+double	PmergeMe::getDequeDeltaTime(void) const
+{
+	return (this->_deltaTimeDeque);
+}
+
+/*
+** Parsing
+*/
+
+std::vector<int> PmergeMe::_parseArgsVector(int argc, char **argv)
+{
+	std::vector<int>	args;
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
+		int j = 0;
+		while (argv[i][j])
+		{
+			if (!std::isdigit(argv[i][j]))
+				throw invalidArgumentError();
+			j++;
+		}
+		int value = atoi(arg.c_str());
+		if (value <= 0)
+			throw invalidArgumentError();
+		args.push_back(value);
+	}
+	return (args);
+}
+
+std::deque<int> PmergeMe::_parseArgsDeque(int argc, char **argv)
+{
+	std::deque<int>	args;
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string arg = argv[i];
+		int j = 0;
+		while (argv[i][j])
+		{
+			if (!std::isdigit(argv[i][j]))
+				throw invalidArgumentError();
+			j++;
+		}
+		int value = atoi(arg.c_str());
+		if (value <= 0)
+			throw invalidArgumentError();
+		args.push_back(value);
+	}
+	return (args);
+}
+
+void PmergeMe::_verifyDuplicates(void)
+{
+	std::set<int> numSet;
+	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); ++it) {
+		int num = *it;
+		if (numSet.find(num) != numSet.end())
+			throw duplicatesError();
+		numSet.insert(num);
+	}
+}
+
+/*
+** Sort
+*/
+
+template <typename T>
+void	PmergeMe::_mergeInsertSort(T& container)
+{
+	const int threshold = 16;
+	const int size = container.size();
+	if (size < 2)
+		return ;
+	if (size < threshold)
+	{
+		for (typename T::iterator i = container.begin(); i != container.end(); ++i)
+		{
+			typename T::iterator j = i;
+			while (j != container.begin() && *(j - 1) > *j)
+			{
+				std::swap(*j, *(j - 1));
+				--j;
+			}
+		}
+		return ;
+	}
+	typename T::iterator middle = container.begin() + size / 2;
+	T left(container.begin(), middle);
+	T right(middle, container.end());
+	_mergeInsertSort(left);
+	_mergeInsertSort(right);
+	typename T::iterator i = left.begin();
+	typename T::iterator j = right.begin();
+	typename T::iterator k = container.begin();
+	while (i != left.end() && j != right.end())
+	{
+		if (*i < *j)
+		{
+			*k = *i;
+			++i;
+		}
+		else
+		{
+			*k = *j;
+			++j;
+		}
+		++k;
+	}
+	while (i != left.end())
+	{
+		*k = *i;
+		++i;
+		++k;
+	}
+	while (j != right.end())
+	{
+		*k = *j;
+		++j;
+		++k;
+	}
+}
+
+/*
+** Manage time
+*/
+
+double	PmergeMe::_getTime(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
+}
+
+double	PmergeMe::_deltaTime(long long time)
+{
+	if (time > 0)
+		return (_getTime() - time);
+	return (0);
+}
+
+/*
+** Printers
+*/
+
+void	PmergeMe::_printBeforeAfter(void)
+{
+	if (_sorted == false)
+		std::cout << "Before: ";
+	else
+		std::cout << "After:  ";
+	std::vector<int>::iterator it = _vector.begin();
+	std::vector<int>::iterator ite = _vector.end();
+	while (it != ite)
+	{
+		std::cout << " " << *it;
+		++it;
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::_printTime(std::string vectorDeque) const
+{
+	double delta;
+	if (vectorDeque == "vector")
+		delta = _deltaTimeVector;
+	else if (vectorDeque == "deque")
+		delta = _deltaTimeDeque;
+	else
+		throw containerTypeError();
+	std::cout 
+		<< "Time to process a range of " << _size 
+		<< " elements with std::" << vectorDeque << ": "
+		<< std::fixed << std::setprecision(5) << delta << " ms" << std::endl;
 }

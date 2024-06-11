@@ -11,22 +11,24 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include "PmergeMe.cpp"
 
+#include "PmergeMe.hpp"
+#include <iostream>
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	if (argc <= 1)
-		return 0;
-	try {
-		PmergeMe<std::list<int> > C;
-		C.Init(argv);
-
-	}
-	catch (const std::exception & bc)
+	if (argc < 2)
 	{
-		std::cerr << "Error: " << bc.what() << std::endl;
-		return 1;
+		std::cerr << "[Error]: no argument" << std::endl;
+		return (1);
 	}
-	return 0;
+	try
+	{
+		PmergeMe input(argc, argv);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	return (0);
 }
